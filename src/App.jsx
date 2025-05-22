@@ -1,35 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import { Container } from "react-bootstrap";
+import { QuizProvider } from "./context/QuizContext";
+import FilterQuiz from "./components/FilterQuiz";
+import QuizAccordion from "./components/QuizAccordion";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [category, setCategory] = useState("Toutes");
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <QuizProvider>
+      <Container className="my-4">
+        <h1>Quiz Interactif</h1>
+        <FilterQuiz category={category} setCategory={setCategory} />
+        <QuizAccordion category={category} />
+      </Container>
+    </QuizProvider>
+  );
 }
 
-export default App
+export default App;
